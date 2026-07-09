@@ -130,11 +130,11 @@ To route `www.stimulain.com` directly to the GitHub Pages repository:
     ```
 4.  **Enforce HTTPS**: Under GitHub repository Settings -> Pages, type `stimulain.com` in the Custom Domain field, save, and check "Enforce HTTPS".
 
-### Audio Format Optimizations (.FLAC Compression)
+### Audio Format Optimizations (MP3 Compression)
 To stay within GitHub's strict file limit of 100MB per file:
-1.  Compress the Late 2025 DJ Mix into a high-fidelity `.flac` format (targets around 60–80MB depending on compression ratio).
-2.  Update the track index object in `script.js` to point to `music/Stimulain_-_Late_2025_MIX_FINAL_duplicate.flac`.
-3.  Remove the `.gitignore` rule for `music/Stimulain_-_Late_2025_MIX_FINAL_duplicate.mp3` once the `.flac` counterpart is staged and pushed.
+1.  Compressed the Late 2025 DJ Mix into a high-fidelity 192 kbps MP3 format (`Stimulain_-_Late_2025_MIX_FINAL_Low_Quality_duplicate.mp3`, size ~92MB).
+2.  Updated the track index object in `script.js` to point to the new compressed file path.
+3.  The file is now tracked in Git and deployed directly to GitHub Pages.
 
 ### Explicitly Deferred Items
 *   **Direct Audio Upload Dashboard**: Deferred to a future serverless admin build. Currently tracks are managed directly inside the static code array to prevent API security vectors.

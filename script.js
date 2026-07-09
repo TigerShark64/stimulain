@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       title: "Late 2025 Mix",
-      file: "music/Stimulain_-_Late_2025_MIX_FINAL_duplicate.mp3",
+      file: "music/Stimulain_-_Late_2025_MIX_FINAL_Low_Quality_duplicate.mp3",
       artwork: "artwork/Late_2025_Mix-ART_duplicate.jpg",
       artworkFallback: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400"
     }

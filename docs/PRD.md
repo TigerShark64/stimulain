@@ -103,16 +103,38 @@ We are currently in Phase 1. The core static player is fully functional, support
 | **M2: Audio Engine** | Custom HTML5 controller, Web Audio Context, volume & seek state tracking. | Complete | `Complete` |
 | **M3: Vortex Canvas** | AnalyserNode byte mapper, simulated local waves, circular keyframe spinner. | Complete | `Complete` |
 | **M4: Fallback Synth** | OscillatorNode kick generator and tempo state manager. | Complete | `Complete` |
-| **M5: Documentation Audit** | Reorganize and audit all documentation into README.md & `/docs/`. | July 2026 | `In Progress` |
+| **M5: Documentation Audit** | Reorganize and audit all documentation into README.md & `/docs/`. | July 2026 | `Complete` |
 | **M6: Visualizer Modes** | Add horizontal spectrums and oscilloscope line options. | Sept 2026 | `Planned` |
+| **M7: Launch Ops & Audio**| Link custom domain (`www.stimulain.com`) and compress mixes into Git-safe `.FLAC` (<100MB). | July 2026 | `Planned` |
 
 ### Feature Breakdown per Milestone
 *   **M1**: Setup `index.html`, `style.css` variables, background space gradients, `.artist-card` glassmorphism, responsive grid framework.
 *   **M2**: Implement custom controls in `script.js`, seek track, elapsed/total timers, volume slider mapping, custom track object database arrays.
 *   **M3**: Bind standard 2D canvas, program the radiating equalizer bars, program the undulating oscilloscope ring, inject rotation velocity multipliers.
 *   **M4**: Trap local loading failure, trigger oscillator synth loop, output simulated rhythmic data stream to drive canvas.
-*   **M5**: Audit `/docs`, verify assets, unify PRD, Design system, and Patch notes.
+*   **M5**: Audit `/docs`, verify assets, unify PRD, Design system, and Patch notes. (Completed)
 *   **M6**: Create overlay control dropdown, code horizontal bar graphics, write sine-wave oscillator equations.
+*   **M7**: Add custom CNAME file to repository root, configure DNS record redirects for registrar, compress DJ mixes using FLAC encoder to resolve the 100MB limit.
+
+### Custom Domain Routing (www.stimulain.com Setup)
+To route `www.stimulain.com` directly to the GitHub Pages repository:
+1.  **Configure Domain Registrar DNS**: Go to your domain provider settings and create the following A records pointing to GitHub Pages IPs:
+    *   `185.199.108.153`
+    *   `185.199.109.153`
+    *   `185.199.110.153`
+    *   `185.199.111.153`
+2.  **Add Subdomain CNAME**: Add a CNAME record with Host name `www` pointing to: `tigershark64.github.io`
+3.  **Add CNAME to Repo Root**: Create a file named `CNAME` in the repository root containing:
+    ```text
+    stimulain.com
+    ```
+4.  **Enforce HTTPS**: Under GitHub repository Settings -> Pages, type `stimulain.com` in the Custom Domain field, save, and check "Enforce HTTPS".
+
+### Audio Format Optimizations (.FLAC Compression)
+To stay within GitHub's strict file limit of 100MB per file:
+1.  Compress the Late 2025 DJ Mix into a high-fidelity `.flac` format (targets around 60–80MB depending on compression ratio).
+2.  Update the track index object in `script.js` to point to `music/Stimulain_-_Late_2025_MIX_FINAL_duplicate.flac`.
+3.  Remove the `.gitignore` rule for `music/Stimulain_-_Late_2025_MIX_FINAL_duplicate.mp3` once the `.flac` counterpart is staged and pushed.
 
 ### Explicitly Deferred Items
 *   **Direct Audio Upload Dashboard**: Deferred to a future serverless admin build. Currently tracks are managed directly inside the static code array to prevent API security vectors.

@@ -2,6 +2,15 @@
 
 All notable changes to the Stimulain Artist Portal will be documented in this file. This project adheres to Semantic Versioning (MAJOR.MINOR.PATCH).
 
+## [0.1.2] - 2026-07-09
+
+### Added
+*   Implemented a miniature version of the reactive circular oscillator inside the header navigation slot, rendering active frequencies dynamically while playing and locking to a stagnant circle when stopped.
+*   Added `.mini-visualizer-container` CSS styles to frame the mini oscillator as a custom glassmorphic hardware instrument dial.
+
+### Removed
+*   Removed the vestigial "Back to Dashboard" navigation link (`#btn-back-hub`) from the top-left slot of the page header.
+
 ---
 
 ## [0.1.1] - 2026-07-09

@@ -378,6 +378,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!vCanvas) return;
 
     const vCtx = vCanvas.getContext("2d");
+    const miniCanvas = document.getElementById("mini-visualizer");
+    const miniCtx = miniCanvas ? miniCanvas.getContext("2d") : null;
     let offset = 0;
 
     function resizeVCanvas() {
@@ -514,6 +516,79 @@ document.addEventListener("DOMContentLoaded", () => {
       vCtx.stroke();
 
       vCtx.restore();
+
+      // 3. Draw Header Miniature Reactive Oscillator (stagnant if not playing)
+      if (miniCtx) {
+        miniCtx.clearRect(0, 0, miniCanvas.width, miniCanvas.height);
+        const mcx = miniCanvas.width / 2;
+        const mcy = miniCanvas.height / 2;
+        const miniInnerRadius = 15;
+        const miniNumBins = frequencyData.length;
+        const miniRotationAngle = isPlaying ? offset * 0.12 : 0;
+
+        miniCtx.save();
+
+        // Draw Mini Equalizer Bars
+        for (let i = 0; i < miniNumBins; i++) {
+          const value = frequencyData[i] || 0;
+          // Scale bar height down to max 9px extension
+          const barHeight = isPlaying ? (value / 255) * 9 * vortexStrength : 0;
+          const angle = (i / miniNumBins) * Math.PI * 2 + miniRotationAngle;
+
+          const startX = mcx + Math.cos(angle) * miniInnerRadius;
+          const startY = mcy + Math.sin(angle) * miniInnerRadius;
+          const endX = mcx + Math.cos(angle) * (miniInnerRadius + barHeight);
+          const endY = mcy + Math.sin(angle) * (miniInnerRadius + barHeight);
+
+          miniCtx.beginPath();
+          miniCtx.moveTo(startX, startY);
+          miniCtx.lineTo(endX, endY);
+
+          miniCtx.strokeStyle = isPlaying ? "rgba(217, 70, 239, 0.85)" : "rgba(6, 182, 212, 0.3)";
+          miniCtx.lineWidth = 1.5;
+          miniCtx.lineCap = "round";
+
+          if (isPlaying) {
+            miniCtx.shadowBlur = 3;
+            miniCtx.shadowColor = "#d946ef";
+          }
+          miniCtx.stroke();
+        }
+
+        // Draw Mini Oscilloscope Ring
+        miniCtx.beginPath();
+        const miniNumOscPoints = 60;
+        for (let j = 0; j <= miniNumOscPoints; j++) {
+          const angle = (j / miniNumOscPoints) * Math.PI * 2;
+          const freqBinIndex = Math.floor((j / miniNumOscPoints) * miniNumBins) % miniNumBins;
+          const freqVal = frequencyData[freqBinIndex] || 0;
+
+          const waveOscillation = isPlaying ? Math.sin(angle * 8 + offset * 3.5) * (freqVal / 255 * 3) : 0;
+          const currentRadius = miniInnerRadius + 1 + waveOscillation * vortexStrength;
+
+          const x = mcx + Math.cos(angle) * currentRadius;
+          const y = mcy + Math.sin(angle) * currentRadius;
+
+          if (j === 0) {
+            miniCtx.moveTo(x, y);
+          } else {
+            miniCtx.lineTo(x, y);
+          }
+        }
+        miniCtx.closePath();
+        miniCtx.strokeStyle = isPlaying ? "rgba(6, 182, 212, 0.9)" : "rgba(6, 182, 212, 0.25)";
+        miniCtx.lineWidth = isPlaying ? 1.5 : 1;
+
+        if (isPlaying) {
+          miniCtx.shadowBlur = 4;
+          miniCtx.shadowColor = "#06b6d4";
+        } else {
+          miniCtx.shadowBlur = 1;
+          miniCtx.shadowColor = "#06b6d4";
+        }
+        miniCtx.stroke();
+        miniCtx.restore();
+      }
 
       offset += isPlaying ? 0.06 : 0.01;
       requestAnimationFrame(drawVortex);

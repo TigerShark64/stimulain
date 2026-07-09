@@ -3,7 +3,7 @@
 A cybernetic, dark-themed static artist portal featuring an advanced custom audio player, reactive HTML5 canvas visualizer, backup MIDI synthesizer engine, and third-party media embeds.
 
 ## Live Site
-*   **Production URL**: Currently deployed locally. Ready for deployment to [GitHub Pages](https://stimulain.github.io).
+*   **Production URL**: [https://tigershark64.github.io/stimulain/](https://tigershark64.github.io/stimulain/)
 
 ## Technical Stack
 *   **Structure**: HTML5 (Semantic DOM structure, Canvas 2D API)
@@ -19,7 +19,7 @@ A cybernetic, dark-themed static artist portal featuring an advanced custom audi
 ## Installation Steps
 Clone this repository to your local directory:
 ```bash
-git clone https://github.com/stimulain/stimulain.git
+git clone https://github.com/TigerShark64/stimulain.git
 cd stimulain
 ```
 
@@ -52,7 +52,7 @@ To deploy the portal to GitHub Pages:
     ```
 2.  Add your remote repository and push to the primary branch:
     ```bash
-    git remote add origin https://github.com/stimulain/stimulain.git
+    git remote add origin https://github.com/TigerShark64/stimulain.git
     git branch -M main
     git push -u origin main
     ```

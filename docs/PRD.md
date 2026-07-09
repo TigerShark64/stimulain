@@ -139,7 +139,7 @@ We are currently in Phase 1. The core static player is fully functional, support
     *   Node.js (v18+) or Python (for running local dev servers).
 2.  **Clone the project**:
     ```bash
-    git clone https://github.com/stimulain/stimulain.git
+    git clone https://github.com/TigerShark64/stimulain.git
     cd stimulain
     ```
 3.  **Start Dev Server**:

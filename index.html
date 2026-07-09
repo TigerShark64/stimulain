@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO & Meta Tags -->
+  <title>Stimulain | Official Artist Portal</title>
+  <meta name="description" content="Official website for electronic music artist and producer Stimulain. Stream new SoundCloud remixes and Mixcloud sets.">
+  <meta name="keywords" content="Stimulain, Electronic Music, Techno, DJ Mixes, SoundCloud, Mixcloud">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Space Nebula Background -->
+  <div class="space-gradient"></div>
+
+  <!-- Wormhole Vortex Background Artwork Frame -->
+  <div class="vortex-container" id="vortex-container">
+    <div class="vortex-overlay"></div>
+    <div class="vortex-art-frame">
+      <canvas id="vortex-canvas"></canvas>
+      <img id="vortex-art" src="" alt="Vortex Core Art">
+    </div>
+  </div>
+
+  <!-- Primary Wrapper -->
+  <div class="project-container">
+
+    <!-- Header Navigation Back Link -->
+    <header class="project-header">
+      <a href="../../index.html" class="back-link" id="btn-back-hub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Dashboard
+      </a>
+      <div class="project-title">EVANESCENT_ZONE</div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="artist-card">
+      
+      <!-- Artist Branding Header -->
+      <section class="branding-section">
+        <h1 class="artist-logo">STIMULAIN</h1>
+        <p class="artist-subtext">PRODUCTION &bull; SAMPLE PACKS & PRESETS &bull; PRE-RECORDED DJ SETS</p>
+      </section>
+
+      <!-- Custom Audiophile Player -->
+      <section class="custom-player-section">
+        <div class="player-core">
+          
+          <!-- Local File / CORS warning -->
+          <div class="player-notification hidden" id="cors-notification">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="noti-icon">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span class="noti-text">Running locally via file://. Visualizer runs in simulated mode. Host on a server or deploy to GitHub Pages for live Ableton-grade analysis.</span>
+          </div>
+          
+          <!-- Track Meta -->
+          <div class="player-track-info">
+            <div class="track-art-preview">
+              <img id="player-track-art" src="https://images.unsplash.com/photo-1614680376593-902f74fa0d41?q=80&w=120" alt="Track Art">
+            </div>
+            <div class="track-details">
+              <h3 id="player-track-title">Connecting to core...</h3>
+              <p class="track-artist">STIMULAIN</p>
+            </div>
+          </div>
+
+          <!-- Time & Slider -->
+          <div class="player-progress-area">
+            <span class="player-time" id="time-current">0:00</span>
+            <div class="progress-bar-container" id="player-progress-container">
+              <div class="progress-bar-fill" id="player-progress-fill"></div>
+            </div>
+            <span class="player-time" id="time-total">0:00</span>
+          </div>
+
+          <!-- Controls Panel -->
+          <div class="player-control-row">
+            <div class="player-controls">
+              <button class="player-btn" id="player-prev-btn" title="Previous Track">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                  <line x1="5" y1="19" x2="5" y2="5"></line>
+                </svg>
+              </button>
+              <button class="player-btn play-btn-main" id="player-play-btn" title="Play / Pause">
+                <svg id="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <svg id="pause-icon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="4" width="4" height="16"></rect>
+                  <rect x="14" y="4" width="4" height="16"></rect>
+                </svg>
+              </button>
+              <button class="player-btn" id="player-next-btn" title="Next Track">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                  <line x1="19" y1="5" x2="19" y2="19"></line>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Volume Adjuster -->
+            <div class="player-volume-area">
+              <svg class="volume-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+              <input type="range" id="player-volume-slider" min="0" max="1" step="0.05" value="0.7">
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Dynamic Playlist Selector -->
+        <div class="player-playlist">
+          <h4 class="playlist-heading">Select Frequency Master</h4>
+          <ul class="playlist-tracks" id="playlist-tracks">
+            <!-- Dynamically Loaded via JS -->
+          </ul>
+        </div>
+      </section>
+
+
+      <!-- Music Streaming Grid (Compact social footprint for comments) -->
+      <section class="media-grid-compact">
+        <h2 class="compact-grid-title">SOCIAL MEDIA</h2>
+        
+        <div class="compact-embeds">
+          <!-- SoundCloud Remix Banner (Play disabled footprint) -->
+          <div class="media-box-compact">
+            <h3 class="section-title">SoundCloud Portal</h3>
+            <div class="iframe-wrapper">
+              <iframe 
+                id="soundcloud-iframe"
+                width="100%" 
+                height="120" 
+                scrolling="no" 
+                frameborder="no" 
+                allow="autoplay" 
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/stimulain/rohaan-easy-for-them-stimulain-patreon-remix&color=%236366f1&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Mixcloud DJ Set Banner (Mini footprint) -->
+          <div class="media-box-compact">
+            <h3 class="section-title">Mixcloud Log</h3>
+            <div class="iframe-wrapper" style="display: flex; flex-direction: column; gap: 12px;">
+              <iframe 
+                id="mixcloud-iframe"
+                width="100%" 
+                height="120" 
+                scrolling="no" 
+                frameborder="no" 
+                allow="autoplay"
+                src="https://www.mixcloud.com/widget/iframe/?feed=%2FStimulain%2Flate-2025-mix%2F&hide_cover=1&mini=1&light=0">
+              </iframe>
+              <iframe 
+                id="mixcloud-iframe-bonnaloo"
+                width="100%" 
+                height="120" 
+                scrolling="no" 
+                frameborder="no" 
+                allow="autoplay"
+                src="https://www.mixcloud.com/widget/iframe/?feed=%2FStimulain%2Fbonnaloo-extended-mix%2F&hide_cover=1&mini=1&light=0">
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Media Buttons -->
+        <div class="social-links" style="margin-top: 1.5rem; justify-content: center;">
+          <a href="https://soundcloud.com/stimulain" target="_blank" class="social-btn" title="SoundCloud">
+            SoundCloud
+          </a>
+          <a href="https://www.mixcloud.com/Stimulain/" target="_blank" class="social-btn" title="Mixcloud">
+            Mixcloud
+          </a>
+          <a href="https://www.instagram.com/stimulain_music/" target="_blank" class="social-btn" title="Instagram">
+            Instagram
+          </a>
+          <a href="https://x.com/stimulain_music?s=11" target="_blank" class="social-btn" title="X">
+            X
+          </a>
+        </div>
+
+      </section>
+
+      <!-- Connect & Booking Portal -->
+      <section class="connect-section">
+        <h2 class="section-title">BOUND STATE IN THE CONTINUUM SIGNALS</h2>
+        <div class="social-links">
+          <a href="mailto:stimulain@gmail.com" class="social-btn" title="Email Booking">
+            stimulain@gmail.com
+          </a>
+        </div>
+      </section>
+
+      <!-- Native Audio Element -->
+      <audio id="native-audio"></audio>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+      <p>&copy; 2026 Fork-in-Fin Records. All Rights Reserved.</p>
+    </footer>
+
+  </div>
+
+  <!-- Widget API Libraries -->
+  <script src="https://w.soundcloud.com/player/api.js"></script>
+  <script src="https://widget.mixcloud.com/media/js/widgetApi.js"></script>
+
+  <!-- Script JS -->
+  <script src="script.js"></script>
+</body>
+</html>
